@@ -10,7 +10,8 @@ export default {
             colors: {
                 'primary': '#4e73df',
                 'primary-dark': '#224abe',
-                'admin-gray': '#f8f9fc'
+                'admin-gray': '#f8f9fc',
+                'admin-gray-dark': '#858796',
             },
             fontFamily: {
                 'nunito': ['Nunito', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],

@@ -10,4 +10,8 @@
     .menu-active {
         @apply opacity-100
     }
+
+    .card {
+        @apply border w-fit p-5 rounded-lg bg-white shadow-md
+    }
 }

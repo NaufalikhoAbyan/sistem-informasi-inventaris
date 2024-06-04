@@ -23,21 +23,21 @@
                 </div>
             </div>
             <div class="line"></div>
-            <a href="#" class="w-full flex items-center gap-2 menu-active">
+            <a href="#" class="w-full flex items-center gap-2 menu-active" id="dashboard">
                 <img src="{{asset('images/dashboard_icon.svg')}}" alt="dashboard icon" class="h-3.5 w-3.5">
                 <p class="font-bold text-sm">Dashboard</p>
             </a>
             <div class="line"></div>
             <p class="opacity-50">Manajemen</p>
-            <a href="#" class="w-full flex items-center gap-2 opacity-50 mt-8">
+            <a href="#" class="w-full flex items-center gap-2 opacity-50 mt-8" id="barang">
                 <img src="{{asset('images/kategori_icon.svg')}}" alt="dashboard icon" class="h-3.5 w-3.5">
                 <p class="font-bold text-sm">Kategori</p>
             </a>
-            <a href="#" class="w-full flex items-center gap-2 opacity-50 mt-8">
+            <a href="#" class="w-full flex items-center gap-2 opacity-50 mt-8" id="barangMasuk">
                 <img src="{{asset('images/barang_icon.svg')}}" alt="dashboard icon" class="h-3.5 w-3.5">
                 <p class="font-bold text-sm">Barang</p>
             </a>
-            <a href="#" class="w-full flex items-center gap-2 opacity-50 mt-8">
+            <a href="#" class="w-full flex items-center gap-2 opacity-50 mt-8" id="barangKeluar">
                 <img src="{{asset('images/barang_masuk_icon.svg')}}" alt="dashboard icon" class="h-3.5 w-3.5">
                 <p class="font-bold text-sm">Barang Masuk</p>
             </a>
@@ -47,8 +47,8 @@
             </a>
         </div>
         <div class="flex-grow">
-            <div class="w-full shadow-lg h-[70px] py-2 px-4 flex items-center justify-between">
-                <div class="w-[400px] h-[38px] rounded-md ml-4 overflow-hidden flex">
+            <div class="w-full shadow-lg h-[70px] py-2 px-8 flex items-center justify-between">
+                <div class="w-[400px] h-[38px] rounded-md overflow-hidden flex">
                     <input type="text" placeholder="search for..." class="flex-grow bg-admin-gray py-1.5 px-3 rounded-l-lg focus:border-2 focus:border-blue-200">
                     <div class="w-10 h-full bg-primary flex items-center justify-center">
                         <img src="{{asset('images/search_icon.svg')}}" alt="search" class="w-3.5">
@@ -68,7 +68,8 @@
                     </div>
                 </div>
             </div>
-            <div class="p-6">
+            <div class="h-6 bg-gradient-to-t from-gray-100 to-gray-200"></div>
+            <div class="px-6 pb-8 min-h-screen bg-gray-100">
                 @yield('content')
             </div>
         </div>
