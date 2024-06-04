@@ -7,4 +7,4 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::resource('/kategori', CategoryController::class);
+Route::resource('category', CategoryController::class);
