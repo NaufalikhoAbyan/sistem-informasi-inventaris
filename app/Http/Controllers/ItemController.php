@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\ItemIn;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -37,17 +38,27 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        // TODO: make sure the stock is not 0 when a new item is created
-        // TODO: stock will be 0 by default, if the stock is more that 0 when a new item is created, make an Item In data instead
-        Item::create(
-            $request->validate([
-                'brand' => ['string', 'required'],
-                'series' => ['string', 'required'],
-                'specification' => ['string', 'required'],
-                'stock' => ['integer', 'required'],
-                'category_id' => ['integer', 'required'],
-            ])
-        );
+        $request->validate([
+            'brand' => ['string', 'required'],
+            'series' => ['string', 'required'],
+            'specification' => ['string', 'required'],
+            'stock' => ['integer', 'min:0', 'required'],
+            'category_id' => ['integer', 'required'],
+        ]);
+        $newItem = Item::create([
+            'brand' => $request->brand,
+            'series' => $request->series,
+            'specification' => $request->specification,
+            'stock' => 0,
+            'category_id' => $request->category_id,
+        ]);
+        if ($request->stock > 0) {
+            ItemIn::create([
+                'in_date' => date('Y-m-d'),
+                'in_quantity' => $request->stock,
+                'item_id' => $newItem->id,
+            ]);
+        }
 
         return redirect()->route('item.index');
     }
@@ -79,13 +90,11 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        // TODO: disable updating the stock value
         $item->update(
             $request->validate([
                 'brand' => ['string', 'required'],
                 'series' => ['string', 'required'],
                 'specification' => ['string', 'required'],
-                'stock' => ['integer', 'required'],
                 'category_id' => ['integer', 'required'],
             ])
         );

@@ -29,7 +29,7 @@
             </div>
             <div>
                 <p class="opacity-75 flex text-xl font-bold">Stok</p>
-                <input type="text" class="text-xl p-2 rounded-lg border border-primary-dark w-1/4" name="stock" value="{{$item->stock}}">
+                <input type="text" class="text-xl p-2 rounded-lg border border-primary-dark w-1/4 bg-admin-gray-dark" name="stock" value="{{$item->stock}}" disabled>
             </div>
             <div>
                 <p class="opacity-75 flex text-xl font-bold">Kategori</p>
