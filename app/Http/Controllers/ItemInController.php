@@ -34,13 +34,12 @@ class ItemInController extends Controller
      */
     public function store(Request $request)
     {
-        ItemIn::create(
-            $request->validate([
-                'in_date' => ['date', 'required'],
-                'in_quantity' => ['integer', 'min:0', 'required'],
-                'item_id' => ['integer', 'required']
-            ])
-        );
+        $data = $request->validate([
+            'in_date' => ['date', 'required'],
+            'in_quantity' => ['integer', 'min:0', 'required'],
+            'item_id' => ['integer', 'required']
+        ]);
+        ItemIn::create($data);
 
         return redirect()->route('item-in.index');
     }
@@ -71,13 +70,15 @@ class ItemInController extends Controller
      */
     public function update(Request $request, ItemIn $item_in)
     {
-        $item_in->update(
-            $request->validate([
-                'in_date' => ['date', 'required'],
-                'in_quantity' => ['integer', 'min:0', 'required'],
-                'item_id' => ['integer', 'required']
-            ])
-        );
+        $data = $request->validate([
+            'in_date' => ['date', 'required'],
+            'in_quantity' => ['integer', 'min:0', 'required']
+        ]);
+        $item = Item::find($item_in['item_id']);
+        if($item['stock'] - $item_in['in_quantity'] + $data['in_quantity'] < 0){
+            return redirect()->back()->withErrors(['error' => 'The value of item quantity will result in less than zero']);
+        }
+        $item_in->update($data);
         return redirect()->route('item-in.index');
     }
 
@@ -86,6 +87,10 @@ class ItemInController extends Controller
      */
     public function destroy(ItemIn $item_in)
     {
+        $item = $item_in->item;
+        if($item['stock'] - $item_in['in_quantity'] < 0){
+            return redirect()->back()->withErrors(['error' => 'The value of item quantity will result in less than zero']);
+        }
         $item_in->delete();
         return redirect()->route('item-in.index');
     }

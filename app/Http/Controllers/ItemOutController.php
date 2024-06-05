@@ -34,13 +34,16 @@ class ItemOutController extends Controller
      */
     public function store(Request $request)
     {
-        ItemOut::create(
-            $request->validate([
-                'out_date' => ['date', 'required'],
-                'out_quantity' => ['integer', 'min:0', 'required'],
-                'item_id' => ['integer', 'required']
-            ])
-        );
+        $data = $request->validate([
+            'out_date' => ['date', 'required'],
+            'out_quantity' => ['integer', 'min:0', 'required'],
+            'item_id' => ['integer', 'required']
+        ]);
+        $item = Item::find($data['item_id']);
+        if($item['stock'] - $data['out_quantity'] < 0) {
+            return redirect()->back()->withErrors(['error' => 'The value of item quantity will result in less than zero']);
+        }
+        ItemOut::create($data);
         return redirect()->route('item-out.index');
     }
 
@@ -70,13 +73,15 @@ class ItemOutController extends Controller
      */
     public function update(Request $request, ItemOut $item_out)
     {
-        $item_out->update(
-            $request->validate([
-                'out_date' => ['date', 'required'],
-                'out_quantity' => ['integer', 'min:0', 'required'],
-                'item_id' => ['integer', 'required']
-            ])
-        );
+        $data = $request->validate([
+            'out_date' => ['date', 'required'],
+            'out_quantity' => ['integer', 'min:0', 'required']
+        ]);
+        $item = Item::find($item_out['item_id']);
+        if ($item['stock'] + $item_out['out_quantity'] - $data['out_quantity'] < 0) {
+            return redirect()->back()->withErrors(['error' => 'The value of item quantity will result in less than zero']);
+        }
+        $item_out->update($data);
         return redirect()->route('item-out.index');
     }
 

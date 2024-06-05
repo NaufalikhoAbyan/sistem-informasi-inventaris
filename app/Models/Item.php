@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @method static create(array $validate)
+ * @method static find(mixed $item_id)
  */
 class Item extends Model
 {

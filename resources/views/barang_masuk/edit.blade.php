@@ -25,7 +25,7 @@
             </div>
             <div>
                 <p class="opacity-75 flex text-xl font-bold">Deskripsi</p>
-                <select class="text-xl p-2 rounded-lg border border-primary-dark w-1/4" name="item_id">
+                <select class="text-xl p-2 rounded-lg border border-primary-dark w-1/4" name="item_id" disabled>
                     @foreach($items as $item)
                         <option value="{{$item->id}}" {{$item->id == $itemIn->item_id ? "selected" : ""}}>{{$item->brand}} {{$item->series}}</option>
                     @endforeach
