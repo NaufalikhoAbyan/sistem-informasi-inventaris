@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Item;
+use Exception;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -36,6 +37,8 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+        // TODO: make sure the stock is not 0 when a new item is created
+        // TODO: stock will be 0 by default, if the stock is more that 0 when a new item is created, make an Item In data instead
         Item::create(
             $request->validate([
                 'brand' => ['string', 'required'],
@@ -76,6 +79,7 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
+        // TODO: disable updating the stock value
         $item->update(
             $request->validate([
                 'brand' => ['string', 'required'],
@@ -93,7 +97,11 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        $item->delete();
+        try{
+            $item->delete();
+        } catch(Exception $e){
+            return redirect()->route('item.index')->withErrors(['error' => 'Data tidak dapat dihapus karena sedang digunakan oleh data lain']);
+        }
         return redirect()->route('item.index');
     }
 }
