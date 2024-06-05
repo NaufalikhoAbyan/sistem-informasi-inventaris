@@ -31,6 +31,11 @@
                 </select>
             </div>
             <button type="submit" class="button-primary w-fit">Tambah</button>
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                    <div class="text-admin-danger font-bold">{{$error}}</div>
+                @endforeach
+            @endif
         </div>
     </form>
 @endsection

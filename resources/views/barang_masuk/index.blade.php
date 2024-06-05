@@ -9,6 +9,11 @@
             </button>
         </a>
     </div>
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+            <p class="text-admin-danger font-bold">{{$error}}</p>
+        @endforeach
+    @endif
     <div class="border rounded-lg bg-white shadow-md mt-4">
         <div class="p-5 bg-admin-gray rounded-t-lg border-b">
             <p class="font-bold text-primary">Tabel Barang Masuk</p>
