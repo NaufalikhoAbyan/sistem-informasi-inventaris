@@ -8,7 +8,7 @@
                 <p>Back</p>
             </div>
         </a>
-        <p class="text-[28px] opacity-60">Tambah Kategori</p>
+        <p class="text-[28px] opacity-60">Tambah Barang</p>
     </div>
 
     <form action="{{ route('item.store') }}" method="POST">

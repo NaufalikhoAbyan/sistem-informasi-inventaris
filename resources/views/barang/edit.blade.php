@@ -1,5 +1,5 @@
 @extends('layout.layout')
-@section('title', 'Edit Kategori')
+@section('title', 'Edit Barang')
 @section('content')
     <div class="flex flex-col gap-2">
         <a href="{{ route('item.index') }}">

@@ -1,5 +1,5 @@
 @extends('layout.layout')
-@section('title', 'Edit Kategori')
+@section('title', 'Lihat Barang')
 @section('content')
     <div class="flex flex-col gap-2">
         <a href="{{ route('item.index') }}">
@@ -8,7 +8,7 @@
                 <p>Back</p>
             </div>
         </a>
-        <p class="text-[28px] opacity-60">Lihat Item</p>
+        <p class="text-[28px] opacity-60">Lihat Barang</p>
     </div>
 
     <div class="card flex flex-col gap-4">

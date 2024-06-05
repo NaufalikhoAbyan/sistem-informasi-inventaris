@@ -37,7 +37,7 @@
                 <img src="{{asset('images/barang_icon.svg')}}" alt="dashboard icon" class="h-3.5 w-3.5">
                 <p class="font-bold text-sm">Barang</p>
             </a>
-            <a href="#" class="w-full flex items-center gap-2 opacity-50 mt-8" id="barangKeluar">
+            <a href="{{ route('item-in.index') }}" class="w-full flex items-center gap-2 opacity-50 mt-8" id="barangKeluar">
                 <img src="{{asset('images/barang_masuk_icon.svg')}}" alt="dashboard icon" class="h-3.5 w-3.5">
                 <p class="font-bold text-sm">Barang Masuk</p>
             </a>
