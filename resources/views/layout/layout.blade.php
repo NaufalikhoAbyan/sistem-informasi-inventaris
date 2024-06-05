@@ -41,7 +41,7 @@
                 <img src="{{asset('images/barang_masuk_icon.svg')}}" alt="dashboard icon" class="h-3.5 w-3.5">
                 <p class="font-bold text-sm">Barang Masuk</p>
             </a>
-            <a href="#" class="w-full flex items-center gap-2 opacity-50 mt-8">
+            <a href="{{ route('item-out.index') }}" class="w-full flex items-center gap-2 opacity-50 mt-8">
                 <img src="{{asset('images/barang_keluar_icon.svg')}}" alt="dashboard icon" class="h-3.5 w-3.5">
                 <p class="font-bold text-sm">Barang Keluar</p>
             </a>
