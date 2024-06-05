@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('item_outs', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('out_date');
+            $table->date('out_date');
             $table->integer('out_quantity');
-            $table->foreignIdFor(Item::class);
+            $table->foreignIdFor(Item::class)->constrained();
             $table->timestamps();
         });
     }
