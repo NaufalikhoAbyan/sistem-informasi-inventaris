@@ -33,7 +33,7 @@
                 <img src="{{asset('images/kategori_icon.svg')}}" alt="dashboard icon" class="h-3.5 w-3.5">
                 <p class="font-bold text-sm">Kategori</p>
             </a>
-            <a href="#" class="w-full flex items-center gap-2 opacity-50 mt-8" id="barangMasuk">
+            <a href="{{ route('item.index') }}" class="w-full flex items-center gap-2 opacity-50 mt-8" id="barangMasuk">
                 <img src="{{asset('images/barang_icon.svg')}}" alt="dashboard icon" class="h-3.5 w-3.5">
                 <p class="font-bold text-sm">Barang</p>
             </a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,12 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::all();
+
+        return view('barang.index', [
+            'items' => $items,
+            'count' => 1
+        ]);
     }
 
     /**
@@ -20,7 +26,9 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('barang.create', [
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
@@ -28,7 +36,17 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Item::create(
+            $request->validate([
+                'brand' => ['string', 'required'],
+                'series' => ['string', 'required'],
+                'specification' => ['string', 'required'],
+                'stock' => ['integer', 'required'],
+                'category_id' => ['integer', 'required'],
+            ])
+        );
+
+        return redirect()->route('item.index');
     }
 
     /**
@@ -36,7 +54,10 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        return view('barang.show', [
+            'item' => $item,
+            'category' => $item->category
+        ]);
     }
 
     /**
@@ -44,7 +65,10 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return view('barang.edit', [
+            'item' => $item,
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
@@ -52,7 +76,16 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $item->update(
+            $request->validate([
+                'brand' => ['string', 'required'],
+                'series' => ['string', 'required'],
+                'specification' => ['string', 'required'],
+                'stock' => ['integer', 'required'],
+                'category_id' => ['integer', 'required'],
+            ])
+        );
+        return redirect()->route('item.index');
     }
 
     /**
@@ -60,6 +93,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+        return redirect()->route('item.index');
     }
 }
