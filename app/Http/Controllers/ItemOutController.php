@@ -40,7 +40,10 @@ class ItemOutController extends Controller
             'item_id' => ['integer', 'required']
         ]);
         $item = Item::find($data['item_id']);
-        if($item['stock'] - $data['out_quantity'] < 0) {
+        if ($item->itemInLatest->first()['date'] < $data['out_date']) {
+            return redirect()->back()->withErrors(['error' => 'The date cannot be less than the latest Item In date']);
+        }
+        if ($item['stock'] - $data['out_quantity'] < 0) {
             return redirect()->back()->withErrors(['error' => 'The value of item quantity will result in less than zero']);
         }
         ItemOut::create($data);
@@ -78,6 +81,9 @@ class ItemOutController extends Controller
             'out_quantity' => ['integer', 'min:0', 'required']
         ]);
         $item = Item::find($item_out['item_id']);
+        if ($item->itemInLatest->first()['date'] < $data['out_date']) {
+            return redirect()->back()->withErrors(['error' => 'The date cannot be less than the latest Item In date']);
+        }
         if ($item['stock'] + $item_out['out_quantity'] - $data['out_quantity'] < 0) {
             return redirect()->back()->withErrors(['error' => 'The value of item quantity will result in less than zero']);
         }

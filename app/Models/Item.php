@@ -35,4 +35,9 @@ class Item extends Model
     {
         return $this->hasMany(ItemOut::class);
     }
+
+    public function itemInLatest(): HasMany
+    {
+        return $this->hasMany(ItemIn::class)->latest();
+    }
 }
