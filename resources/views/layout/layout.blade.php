@@ -61,10 +61,14 @@
                     </div>
                     <div class="bg-black opacity-15 h-3/4 w-[2px] mx-4"></div>
                     <div class="flex items-center gap-4">
-                        <p>ICamelot</p>
+                        <p>{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
                         <div class="w-8 aspect-square rounded-full">
                             <img src="{{asset('images/undraw_profile.svg')}}" alt="profile" class="w-full h-full">
                         </div>
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <button type="submit" class="border rounded-lg bg-admin-danger text-white p-2">Logout</button>
+                        </form>
                     </div>
                 </div>
             </div>

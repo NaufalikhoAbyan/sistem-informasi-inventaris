@@ -11,26 +11,36 @@
         <p class="text-[28px] opacity-60">Lihat Barang</p>
     </div>
 
-    <div class="card flex flex-col gap-4">
-        <div>
-            <p class="text-primary font-bold">Merk</p>
-            <p class="text-2xl">{{$item->brand}}</p>
+    <div class="flex gap-4 h-fit">
+        <div class="card flex flex-col gap-4">
+            <div>
+                <p class="text-primary font-bold">Merk</p>
+                <p class="text-2xl">{{$item->brand}}</p>
+            </div>
+            <div>
+                <p class="text-primary font-bold">Seri</p>
+                <p class="text-2xl">{{$item->series}}</p>
+            </div>
+            <div>
+                <p class="text-primary font-bold">Spesifikasi</p>
+                <p class="text-2xl">{{$item->specification}}</p>
+            </div>
+            <div>
+                <p class="text-primary font-bold">Stok</p>
+                <p class="text-2xl">{{$item->stock}}</p>
+            </div>
+            <div>
+                <p class="text-primary font-bold">Kategori</p>
+                <p class="text-2xl">({{$category->category}}) {{$category->description}}</p>
+            </div>
         </div>
+        @if($item->itemImage)
         <div>
-            <p class="text-primary font-bold">Seri</p>
-            <p class="text-2xl">{{$item->series}}</p>
+            <div class="card flex flex-col gap-4">
+                <p class="text-primary font-bold">Gambar</p>
+                <img src="{{asset('storage/images/' . $item->itemImage->filename)}}" alt="item image" class="w-48">
+            </div>
         </div>
-        <div>
-            <p class="text-primary font-bold">Spesifikasi</p>
-            <p class="text-2xl">{{$item->specification}}</p>
-        </div>
-        <div>
-            <p class="text-primary font-bold">Stok</p>
-            <p class="text-2xl">{{$item->stock}}</p>
-        </div>
-        <div>
-            <p class="text-primary font-bold">Kategori</p>
-            <p class="text-2xl">({{$category->category}}) {{$category->description}}</p>
-        </div>
+       @endif
     </div>
 @endsection

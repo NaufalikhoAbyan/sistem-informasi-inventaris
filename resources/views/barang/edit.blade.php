@@ -17,6 +17,9 @@
         <div class="py-4 flex flex-col gap-4">
             <div>
                 <p class="opacity-75 flex text-xl font-bold">Gambar</p>
+                @if($item->itemImage)
+                    <img src="{{asset('storage/images/' . $item->itemImage->filename)}}" alt="item image" class="w-48">
+                @endif
                 <input type="file" class="text-xl p-2 w-1/4" name="image" accept=".jpeg, .png, .jpg">
             </div>
             <div>
