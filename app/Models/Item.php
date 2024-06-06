@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @method static create(array $validate)
@@ -39,5 +40,10 @@ class Item extends Model
     public function itemInLatest(): HasMany
     {
         return $this->hasMany(ItemIn::class)->latest();
+    }
+
+    public function itemImage(): HasOne
+    {
+        return $this->hasOne(ItemImage::class);
     }
 }

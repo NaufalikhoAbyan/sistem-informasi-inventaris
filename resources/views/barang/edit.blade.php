@@ -11,10 +11,14 @@
         <p class="text-[28px] opacity-60">Edit Barang</p>
     </div>
 
-    <form action="{{ route('item.update', $item->id) }}" method="POST">
+    <form action="{{ route('item.update', $item->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="py-4 flex flex-col gap-4">
+            <div>
+                <p class="opacity-75 flex text-xl font-bold">Gambar</p>
+                <input type="file" class="text-xl p-2 w-1/4" name="image" accept=".jpeg, .png, .jpg">
+            </div>
             <div>
                 <p class="opacity-75 flex text-xl font-bold">Merk</p>
                 <input type="text" class="text-xl p-2 rounded-lg border border-primary-dark w-1/4" name="brand" value="{{$item->brand}}">

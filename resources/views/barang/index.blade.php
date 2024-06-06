@@ -23,6 +23,7 @@
                 <thead>
                 <tr>
                     <th class="px-4 py-2 text-left border-admin-gray-dark border border-opacity-50">No.</th>
+                    <th class="px-4 py-2 text-left border-admin-gray-dark border border-opacity-50">Gambar</th>
                     <th class="px-4 py-2 text-left border-admin-gray-dark border border-opacity-50">Merk</th>
                     <th class="px-4 py-2 text-left border-admin-gray-dark border border-opacity-50">Seri</th>
                     <th class="px-4 py-2 text-left border-admin-gray-dark border border-opacity-50">Spesifikasi</th>
@@ -33,6 +34,13 @@
                 @foreach($items as $item)
                 <tr>
                     <td class="px-4 py-2 text-left border-admin-gray-dark border border-opacity-50">{{$count}}.</td>
+                    <td class="px-4 py-2 text-left border-admin-gray-dark border border-opacity-50">
+                        @if($item->itemImage)
+                            <img src="{{asset('storage/images/' . $item->itemImage->filename)}}" alt="item image" class="w-12">
+                        @else
+                            Tidak ada Gambar
+                        @endif
+                    </td>
                     <td class="px-4 py-2 text-left border-admin-gray-dark border border-opacity-50">{{$item->brand}}</td>
                     <td class="px-4 py-2 text-left border-admin-gray-dark border border-opacity-50">{{$item->series}}</td>
                     <td class="px-4 py-2 text-left border-admin-gray-dark border border-opacity-50">{{$item->specification}}</td>
